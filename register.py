@@ -1,4 +1,4 @@
-from flask import Blueprint,Flask, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from teachers import users
