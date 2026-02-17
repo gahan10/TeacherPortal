@@ -1,6 +1,4 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_scss import Scss
-from flask_sqlalchemy import SQLAlchemy
 from teachers import users
 from werkzeug.security import generate_password_hash, check_password_hash
 from __init__ import db

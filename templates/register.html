@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-    <form action="/register" method="post">
-        <table width="50%" border="2" bordercolor="brown" cellspacing="2" cellpadding="2">
+<body style="background-color: rgb(182, 182, 182);">
+    <form action="/register" method="post" align="left" style="margin-top: 200px; margin-left: 380px; margin-right: 380px; background-color: whitesmoke; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <table align = "center" width="30%" border="0" bordercolor="black" cellspacing="10" cellpadding="5">
             <tr>
-                <td>Username : </td>
-                <td><input type="text" name="username" maxlength="50"  /></td>
+                <td>Username : </td></tr>
+                <tr><td><input type="text" name="username" maxlength="50" /></td></tr>
             </tr>
             <tr>
-                <td>Password : </td>
-                <td><input type="password" name="password" maxlength="50"  /></td>
+                <td>Password : </td></tr>
+                <tr><td><input type="password" name="password" maxlength="50"  /></td></tr>
             </tr>
             <tr>
                 <td></td>
+                </tr>
                 <td>
-                    <button type="submit">Register</button>
-                    <a href="/login">Already have an account ?</a>
+                    <button type="submit" style="background-color: rgb(29, 27, 25); color: white; padding: 10px 20px; border: none; border-radius: 5px;">Register</button>
+
+                    <a href="/login">Already a user ?</a>
                 </td>
-                
             </tr>
         </table>
     </form>

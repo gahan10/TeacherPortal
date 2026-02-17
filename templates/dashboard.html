@@ -7,16 +7,19 @@
 
     </head>
     
-    <body>
-        <div class="dashboard-main">
-        <table width="100%" height="100%" border="0" cellspacing="7" cellpadding="7" bgcolor="wheat" >
+    <body style="background-color: rgb(182, 182, 182);">
+        <div class="dashboard-main" id="dashboard-main">
+        <table width="100%" height="100%" border="0" cellspacing="7" cellpadding="7" bgcolor="whitesmoke" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <tr>
                 <tr>
-                    <td align="right"><button>Home</button> <button onclick="location.href='/login'">Logout</button></td>
+                    <td align="right">
+                        <button style="background-color: whitesmoke; color: black; padding: 10px 20px; border: none; border-radius: 20px; font-weight: bold; font-size: medium;">Home</button>
+                        <button onclick="location.href='/login'" style="background-color: whitesmoke; color: black; padding: 10px 20px; border: none; border-radius: 20px; font-weight: bold; font-size: medium;">Logout</button>
+                    </td>
                 </tr>
                 <td align="center">
-                    <table width="100%" border="" bordercolor="black" cellspacing="8" cellpadding="8">
-                        <tr>
+                    <table width="100%" border="0" bordercolor="black" cellspacing="8" cellpadding="8">
+                        <tr align="left">
                             <th><strong>Name</strong></th>
                             <th><strong>Subject</strong></th>
                             <th><strong>Mark</strong></th>
@@ -25,10 +28,12 @@
                         {% for students in students %}
                         <tr>
                             <form action="/update/{{ students.id }}" method="post">
-                            <td><input type="text" name="name" value="{{ students.name }}"></td>
-                            <td><input type="text" name="subject" value="{{ students.subject }}"></td>     
-                            <td><input type="text" name="marks" value="{{ students.marks }}"></td>
-                            <td><button type="submit">Update</button> <button type="submit" formaction="/delete/{{ students.id }}">Delete</button></td>  
+
+                            <td><input type="text" name="name" value="{{ students.name }}" style="border: none; outline: none; background: transparent;"></td>
+                            <td><input type="text" name="subject" value="{{ students.subject }}" style="border: none; outline: none; background: transparent;"></td>     
+                            <td><input type="text" name="marks" value="{{ students.marks }}" style="border: none; outline: none; background: transparent;"></td>
+                            <td><button type="submit" style="background-color: rgb(29, 27, 25); color: white; padding: 10px 10px; border: none; border-radius: 5px;">Update</button>
+                                <button type="submit" formaction="/delete/{{ students.id }}" style="background-color: rgb(29, 27, 25); color: white; padding: 10px 10px; border: none; border-radius: 5px;">Delete</button></td>  
                             </form>    
                         </tr>
                       {% endfor %}    
@@ -36,7 +41,7 @@
                     <table>
                         <tr>
                             <td align="left">
-                                <button type="button" onclick="openNewWindow()">ADD</button>
+                                <button type="button" onclick="openNewWindow()" style="background-color: rgb(29, 27, 25); color: white; padding: 10px 20px; border: none; border-radius: 5px;">ADD</button>
                             </td>
                             <td></td>
                             <td></td>
@@ -53,16 +58,16 @@
 
         <script>
             function openNewWindow() {
-                const newWindow = window.open("", "Add Student", "width=400,height=300");
-           newWindow.document.write(`
+            const newWindow = window.open("", "Add Student", "width=400,height=300,top=200,left=550;margin-top: 400px; margin-left: 350px; margin-right: 350px;");
+newWindow.document.write(`
 <html>
 <head>
     <title>Add a Student</title>
     <meta charset="utf-8">
 </head>
 <body>
-    <form id="addStudentForm">
-        <table align="center" width="100%" cellspacing="8" cellpadding="8">
+    <form id="addStudentForm" align="center" style="margin-top: 50px;">
+        <table align="center" width="30%" border="0" bordercolor="black" cellspacing="10" cellpadding="5">
             <tr>
                 <td>Name : <input type="text" name="name"></td>
             </tr>
@@ -72,18 +77,23 @@
             <tr>
                 <td>Marks : <input type="text" name="marks"></td>
             </tr>
-            <tr>
-                <td><button type="submit">Add</button></td>
+            <tr align="center">
+                <td><button type="submit" style="background-color: rgb(29, 27, 25); color: white; padding: 10px 20px; border: none; border-radius: 5px;" = >Add</button></td>
             </tr>
         </table>
     </form>
 
     <script>
+        window.opener.document.body.style.filter = "blur(5px)";
         document.getElementById('addStudentForm')
         .addEventListener('submit', function(e) {
             e.preventDefault();
 
             const formData = new FormData(this);
+            if (formData.get('name')==="" && formData.get('subject')==="" && formData.get('marks')==="") {
+                alert("Please fill in all fields.");
+                return;
+            }
 
             fetch('/add', {
                 method: 'POST',
